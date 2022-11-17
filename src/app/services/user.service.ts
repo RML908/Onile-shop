@@ -16,9 +16,9 @@ invalidUserAuth= new EventEmitter<boolean>(false)
       localStorage.setItem('user',JSON.stringify(result.body));
       this.router.navigate(['/']);
     }
-    
+
    })
-    
+
   }
   userLogin(data:login){
     this.http.get<signUp[]>(`http://localhost:3000/users?email=${data.email}&password=${data.password}`,

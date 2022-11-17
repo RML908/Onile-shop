@@ -1,37 +1,155 @@
-<nav class="nav">
-  <h1><a routerLink="">E-Comm</a> </h1>
-  <div *ngIf="menuType!=='seller'" class="nav-search">
-    <input type="text"
-    #searchInput
-    (keyup)="searchProduct($event)" (blur)="hideSearch()" placeholder="Search Products" />
-    <button (click)="submitSearch(searchInput.value)" >Search</button>
-    <ul class="suggested-search" *ngIf="searchResult">
-      <li *ngFor="let item of searchResult">
-        <a (mousedown)="redirectToDetails(item.id)" >{{item.name}}</a>
-      </li>
-    </ul>
-  </div>
- <div [ngSwitch]="menuType">
-  <ul *ngSwitchCase="'default'" >
-    <li><a routerLink="seller-auth">Seller</a></li>
-    <li><a routerLink="">Home</a></li>
-    <li><a routerLink="user-auth">Login/Sign-up</a></li>
-    <li><a href="#">Cart({{cartItems}})</a></li>
-  </ul>
-  <ul *ngSwitchCase="'user'" >
-    <li><a routerLink="seller-auth">Seller</a></li>
-    <li><a routerLink="">Home</a></li>
-    <li><a>{{userName | titlecase}}</a></li>
-    <li><a routerLink="my-orders" >My Orders</a></li>
-    <li><a (click)="userLogout()" >Logout</a></li>
-
-    <li><a [routerLink]="cartItems>0?'cart-page':null">Cart({{cartItems}})</a></li>
-  </ul>
-  <ul *ngSwitchCase="'seller'" >
-    <li><a routerLink="seller-add-product">Add Product</a></li>
-    <li><a routerLink="seller-home">List</a></li>
-    <li><a (click)="logout()">Logout</a></li>
-    <li><a href="#">{{sellerName | titlecase}}</a></li>
-  </ul>
- </div>
+<nav class="navbar navbar-expand-md  fixed-top bg-white  navbar-light p-2  shadow-sm" >
+  <a class="navbar-brand" href="#"><i class="fa-solid fa-shop me-2"></i> <strong>Online SHOP</strong></a>
+    <div *ngIf="menuType!=='seller'" class="mx-auto  d-lg-none d-sm-block d-xs-block">
+      <div class="input-group">
+        <span class="border-warning input-group-text bg-warning text-white"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <input type="text" class="form-control border-warning" style="color:#7a7a7a" #searchInput
+               (keyup)="searchProduct($event)"
+               (blur)="hideSearch()"
+               placeholder="Search Products"
+        >
+        <button class="btn btn-warning text-white" (click)="submitSearch(searchInput.value)">Search</button>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="myNavbar"
+                aria-controls="myNavbar" aria-expanded="false"
+                aria-label="Toggle navigation"  (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+              <ul class="suggested-search" *ngIf="searchResult">
+                <li *ngFor="let item of searchResult">
+                  <a (mousedown)="redirectToDetails(item.id)" >{{item.name}}</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+      <div class="ms-auto d-none d-lg-block">
+        <div class="input-group">
+          <span class="border-warning input-group-text bg-warning text-white"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" class="form-control border-warning" style="color:#7a7a7a">
+          <button class="btn btn-warning text-white">Search</button>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end"
+           id="myNavbar"
+           [ngbCollapse]="isCollapsed"
+           [ngSwitch]="menuType"
+      >
+      <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0" *ngSwitchCase="'default'">
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-uppercase" aria-current="page" routerLink="seller-auth">
+            <mat-icon>business_center</mat-icon>Seller</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-uppercase" routerLink=""><mat-icon>home</mat-icon>Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-uppercase" routerLink=""><mat-icon>shopping_cart</mat-icon>Cart({{cartItems}})</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-uppercase" routerLink="user-auth"><mat-icon>people</mat-icon>&nbsp;Sign-in/Sign-up</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto " *ngSwitchCase="'user'">
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-uppercase" href="#"><mat-icon>shopping_cart</mat-icon> Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-uppercase" href="#"><i class="fa-solid fa-circle-user me-1"></i> Account</a>
+        </li>
+      </ul>
+      </div>
 </nav>
+
+
+
+
+<!--<div class="nav main">-->
+<!--    <h1><a routerLink="">E-commerce</a> </h1>-->
+<!--    <div *ngIf="menuType!=='seller'" class="nav-search">-->
+<!--      <input type="text"-->
+<!--      #searchInput-->
+<!--      (keyup)="searchProduct($event)" (blur)="hideSearch()" placeholder="Search Products" />-->
+<!--      <button (click)="submitSearch(searchInput.value)" >Search</button>-->
+<!--      <ul class="suggested-search" *ngIf="searchResult">-->
+<!--        <li *ngFor="let item of searchResult">-->
+<!--          <a (mousedown)="redirectToDetails(item.id)" >{{item.name}}</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+
+<!--      <div class="col-md-12 d-flex justify-content-sm-around">-->
+<!--        <nav class="navbar navbar-expand-lg navbar-light ">-->
+<!--          <button class="navbar-toggler ml-auto custom-toggler" type="button" data-toggle="collapse"-->
+<!--                  (click)="isCollapsed = !isCollapsed">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--          </button>-->
+<!--          &lt;!&ndash; The menu items &ndash;&gt;-->
+<!--          <div class="collapse navbar-collapse"-->
+<!--               [ngSwitch]="menuType"-->
+<!--               [ngbCollapse]="isCollapsed"-->
+<!--               id="navbarSupportedContent">-->
+<!--              <ul class="navbar-nav ml-auto" *ngSwitchCase="'default'">-->
+<!--                <li class="navbar-link"><a class="text-center" routerLink="seller-auth">Seller</a></li>-->
+<!--                <li class="navbar-link"><a class="text-center" routerLink="">Home</a></li>-->
+<!--                <li class="navbar-link"><a class="text-center" href="#">Cart({{cartItems}})</a></li>-->
+<!--                <li class="navbar-link"><a class="text-center" routerLink="user-auth">Login/Sign-up</a>-->
+<!--                </li>-->
+<!--              </ul>-->
+<!--              <ul class="navbar-nav ml-auto" *ngSwitchCase="'user'">-->
+<!--                <li class="navbar-link"><a routerLink="seller-auth">Seller</a></li>-->
+<!--                <li class="navbar-link"><a routerLink="">Home</a></li>-->
+<!--                <li><a>{{userName | titlecase}}</a></li>-->
+<!--                <li class="navbar-link"><a routerLink="my-orders">My Orders</a></li>-->
+<!--                <li class="navbar-link"><a (click)="userLogout()">Logout</a></li>-->
+<!--                <li class="navbar-link"><a routerLink="my-orders">My Orders</a></li>-->
+<!--              </ul>-->
+<!--              <ul *ngSwitchCase="'seller'">-->
+<!--                <li><a routerLink="seller-add-product">Add Product</a></li>-->
+<!--                <li><a routerLink="seller-home">List</a></li>-->
+<!--                <li><a (click)="logout()">Logout</a></li>-->
+<!--                <li><a href="#">{{sellerName | titlecase}}</a></li>-->
+<!--              </ul>-->
+<!--          </div>-->
+<!--        </nav>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;<nav class="nav">&ndash;&gt;-->
+<!--&lt;!&ndash;  <h1><a routerLink="">E-Comm</a> </h1>&ndash;&gt;-->
+<!--&lt;!&ndash;  <div *ngIf="menuType!=='seller'" class="nav-search">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="text"&ndash;&gt;-->
+<!--&lt;!&ndash;    #searchInput&ndash;&gt;-->
+<!--&lt;!&ndash;    (keyup)="searchProduct($event)" (blur)="hideSearch()" placeholder="Search Products" />&ndash;&gt;-->
+<!--&lt;!&ndash;    <button (click)="submitSearch(searchInput.value)" >Search</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <ul class="suggested-search" *ngIf="searchResult">&ndash;&gt;-->
+<!--&lt;!&ndash;      <li *ngFor="let item of searchResult">&ndash;&gt;-->
+<!--&lt;!&ndash;        <a (mousedown)="redirectToDetails(item.id)" >{{item.name}}</a>&ndash;&gt;-->
+<!--&lt;!&ndash;      </li>&ndash;&gt;-->
+<!--&lt;!&ndash;    </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--&lt;!&ndash; <div [ngSwitch]="menuType">&ndash;&gt;-->
+<!--&lt;!&ndash;  <ul *ngSwitchCase="'default'" >&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a routerLink="seller-auth">Seller</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a routerLink="">Home</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a routerLink="user-auth">Login/Sign-up</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a href="#">Cart({{cartItems}})</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;  </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;  <ul *ngSwitchCase="'user'" >&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a routerLink="seller-auth">Seller</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a routerLink="">Home</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a>{{userName | titlecase}}</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a routerLink="my-orders" >My Orders</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a (click)="userLogout()" >Logout</a></li>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <li><a [routerLink]="cartItems>0?'cart-page':null">Cart({{cartItems}})</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;  </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;  <ul *ngSwitchCase="'seller'" >&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a routerLink="seller-add-product">Add Product</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a routerLink="seller-home">List</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a (click)="logout()">Logout</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;    <li><a href="#">{{sellerName | titlecase}}</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;  </ul>&ndash;&gt;-->
+<!--&lt;!&ndash; </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</nav>&ndash;&gt;-->
+

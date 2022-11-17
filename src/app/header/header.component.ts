@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { product } from '../data-type';
 import { ProductService } from '../services/product.service';
+import {NgbConfig, NgbDropdownConfig} from "@ng-bootstrap/ng-bootstrap";
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,72 +10,97 @@ import { ProductService } from '../services/product.service';
 })
 export class HeaderComponent implements OnInit {
   menuType: string = 'default';
-  sellerName:string="";
-  userName:string="";
-  searchResult:undefined|product[];
-  cartItems=0;
-  constructor(private route: Router, private product:ProductService) {}
+  sellerName: string = "";
+  userName: string = "";
+  searchResult: undefined | product[];
+  cartItems = 0;
+  isCollapsed: boolean = true;
+
+  constructor(private route: Router,
+              private product: ProductService,
+              private config: NgbDropdownConfig
+  ) {
+    config.placement = 'top-start';
+    config.autoClose = false;
+  }
 
   ngOnInit(): void {
     this.route.events.subscribe((val: any) => {
       if (val.url) {
         if (localStorage.getItem('seller') && val.url.includes('seller')) {
-         let sellerStore=localStorage.getItem('seller');
-         let sellerData =sellerStore && JSON.parse(sellerStore)[0];
-         this.sellerName=sellerData.name;
+          let sellerStore = localStorage.getItem('seller');
+          let sellerData = sellerStore && JSON.parse(sellerStore)[0];
+          this.sellerName = sellerData.name;
           this.menuType = 'seller';
-        }
-        else if(localStorage.getItem('user')){
+        } else if (localStorage.getItem('user')) {
           let userStore = localStorage.getItem('user');
           let userData = userStore && JSON.parse(userStore);
-          this.userName= userData.name;
-          this.menuType='user';
+          this.userName = userData.name;
+          this.menuType = 'user';
           this.product.getCartList(userData.id);
-        }
-         else {
+        } else {
           this.menuType = 'default';
         }
       }
     });
-    let cartData= localStorage.getItem('localCart');
-    if(cartData){
-      this.cartItems= JSON.parse(cartData).length
+    let cartData = localStorage.getItem('localCart');
+    if (cartData) {
+      this.cartItems = JSON.parse(cartData).length
     }
-    this.product.cartData.subscribe((items)=>{
-      this.cartItems= items.length
+    this.product.cartData.subscribe((items) => {
+      this.cartItems = items.length
     })
   }
-  logout(){
+
+  logout() {
     localStorage.removeItem('seller');
     this.route.navigate(['/'])
   }
 
-  userLogout(){
+  userLogout() {
     localStorage.removeItem('user');
     this.route.navigate(['/user-auth'])
     this.product.cartData.emit([])
   }
 
-  searchProduct(query:KeyboardEvent){
-    if(query){
+  searchProduct(query: KeyboardEvent) {
+    if (query) {
       const element = query.target as HTMLInputElement;
-      this.product.searchProduct(element.value).subscribe((result)=>{
-       
-        if(result.length>5){
-          result.length=length
+      this.product.searchProduct(element.value).subscribe((result) => {
+
+        if (result.length > 5) {
+          result.length = length
         }
-        this.searchResult=result;
+        this.searchResult = result;
       })
     }
   }
-  hideSearch(){
-    this.searchResult=undefined
+
+  hideSearch() {
+    this.searchResult = undefined
   }
-  redirectToDetails(id:number){
-    this.route.navigate(['/details/'+id])
+
+  redirectToDetails(id: number) {
+    this.route.navigate(['/details/' + id])
   }
-  submitSearch(val:string){
+
+  submitSearch(val: string) {
     console.warn(val)
-  this.route.navigate([`search/${val}`]);
+    this.route.navigate([`search/${val}`]);
+  }
+
+  dropdown() {
+    let x = document.getElementById('myTopnav') as HTMLDivElement | null;
+    const getClass = x?.className === 'dropdown' ? x!.className += 'responsive' : x!.className = 'topnav'
+    return getClass
+  }
+
+  myFunction() {
+    let x = document.getElementById("myTopnav") as HTMLDivElement | null;
+    if (x?.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x!.className = "topnav";
+    }
   }
 }

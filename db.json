@@ -132,6 +132,18 @@
       "email": "tony@user.com",
       "password": "abc123",
       "id": 4
+    },
+    {
+      "name": "Rafayel908",
+      "email": "rafael.mayilyan@hotmail.com",
+      "password": "12345",
+      "id": 5
+    },
+    {
+      "name": "Rafayel908",
+      "email": "rafael.mayilyan@hotmail.com",
+      "password": "rambler5",
+      "id": 6
     }
   ],
   "cart": [
@@ -176,6 +188,22 @@
       "totalPrice": 6100,
       "userId": 1,
       "id": 3
+    },
+    {
+      "email": "rafael.mayilyan@hotmail.com",
+      "address": "Yerevan",
+      "contact": "9890",
+      "totalPrice": 200100,
+      "userId": 5,
+      "id": 4
+    },
+    {
+      "email": "rafael.mayilyan@hotmail.com",
+      "address": "Yerevan",
+      "contact": "9890",
+      "totalPrice": 200100,
+      "userId": 5,
+      "id": 5
     }
   ]
 }
