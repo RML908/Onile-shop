@@ -30,6 +30,9 @@ a {
 nav ul{
   list-style: none;
 }
+.navbar-toggler{
+  color:#f8f9fa;
+}
 
 /*main {*/
 /*  background-color: #1B75BC;*/
