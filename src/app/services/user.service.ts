@@ -9,7 +9,7 @@ import { login, signUp } from '../data-type';
 export class UserService {
 invalidUserAuth= new EventEmitter<boolean>(false)
   constructor(private http: HttpClient, private router:Router) { }
-  userSignUp(user:signUp){
+  userSignUp(user:signUp ){
    this.http.post('http://localhost:3000/users',user,{observe:'response'})
    .subscribe((result)=>{
     if(result){

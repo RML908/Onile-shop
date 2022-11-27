@@ -5,7 +5,6 @@ body {
 }
 
 
-
 .common-form {
   display: flex;
   flex-direction: column;
@@ -26,6 +25,32 @@ body {
   border: 1px solid blueviolet;
   color: blueviolet;
   cursor: pointer;
+}
+
+mat-card-content a {
+  color: blueviolet !important;
+  cursor: pointer !important;
+}
+
+.container {
+  padding-top: 46px;
+}
+
+mat-card {
+  max-width: 400px;
+  margin: 2em auto;
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.user-auth h1 {
+  margin-top: 50px;
+  margin-bottom: 80px;
+  color: blueviolet;
+  text-align: center;
 }
 
 .error-p {

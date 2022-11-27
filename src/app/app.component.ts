@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ecomm-project';
+  isShow: boolean = false;
+
+  togglesShow(){
+    this.isShow = ! this.isShow
+  }
 }

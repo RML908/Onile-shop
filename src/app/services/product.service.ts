@@ -1,18 +1,29 @@
-import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
-import { cart, order, product } from '../data-type';
+import { HttpClient, HttpContext, HttpHeaders, HttpParams} from '@angular/common/http';
+import {EventEmitter, Injectable} from '@angular/core';
+import {cart, order, product} from '../data-type';
+import {BehaviorSubject, Observable} from "rxjs";
+import {PageEvent} from "@angular/material/paginator";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   cartData = new EventEmitter<product[] | []>();
-  constructor(private http: HttpClient) { }
+  public search = new BehaviorSubject<String>('');
+
+  constructor(private http: HttpClient) {
+  }
+
   addProduct(data: product) {
     return this.http.post('http://localhost:3000/products', data);
   }
+
   productList() {
     return this.http.get<product[]>('http://localhost:3000/products');
+  }
+
+  producNewtList(event: PageEvent | undefined) {
+    return this.http.get<any>('http://localhost:3000/products');
   }
 
   deleteProduct(id: number) {
@@ -29,12 +40,14 @@ export class ProductService {
       product
     );
   }
-  popularProducts() {
-    return this.http.get<product[]>('http://localhost:3000/products?_limit=3');
+  allProducts(page:number): Observable<product[]> {
+    return this.http.get(
+      `http://localhost:3000/products?page=${page}&limit=5`
+    )  as  Observable<product[]>;
   }
 
   trendyProducts() {
-    return this.http.get<product[]>('http://localhost:3000/products?_limit=8');
+    return this.http.get<product[]>('http://localhost:3000/trendy_products?_limit=3');
   }
 
   searchProduct(query: string) {

@@ -54,7 +54,7 @@ const routes: Routes = [
     component:MyOrdersComponent,
     path:'my-orders'
   }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,17 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatButtonModule} from "@angular/material/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import { ProductColorDirective } from './product-color.directive';
+import { FilterPipe } from './shared/filter.pipe';
+import {NgxPaginationModule} from "ngx-pagination";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatInputModule} from "@angular/material/input";
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
+import {MatCardModule} from "@angular/material/card";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -40,7 +51,9 @@ import {MatIconModule} from "@angular/material/icon";
     UserAuthComponent,
     CartPageComponent,
     CheckoutComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    ProductColorDirective,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -53,8 +66,18 @@ import {MatIconModule} from "@angular/material/icon";
     MatButtonModule,
     BrowserAnimationsModule,
     MatIconModule,
+    MatInputModule,
+    MatCheckboxModule,
+    NgxPaginationModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    InfiniteScrollModule,
+    MatCardModule,
+    FlexLayoutModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

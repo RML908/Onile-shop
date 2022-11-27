@@ -1,3 +1,5 @@
+import {MatPaginator} from "@angular/material/paginator";
+
 export interface signUp {
   name: string;
   email: string;
@@ -14,10 +16,12 @@ export interface product{
   category:string,
   color:string,
   image:string,
+  short_description:string,
   description:string,
   id:number,
-  quantity:undefined | number,
+  quantity: number,
   productId:undefined|number
+  paginator: MatPaginator
 }
 export interface cart{
   name:string,
@@ -28,7 +32,7 @@ export interface cart{
   description:string,
   id:number| undefined,
   quantity:undefined | number,
-  productId:number,
+  productId:number | undefined,
   userId:number
 }
 

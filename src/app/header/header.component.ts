@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { product } from '../data-type';
-import { ProductService } from '../services/product.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {product} from '../data-type';
+import {ProductService} from '../services/product.service';
 import {NgbConfig, NgbDropdownConfig} from "@ng-bootstrap/ng-bootstrap";
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
   searchResult: undefined | product[];
   cartItems = 0;
   isCollapsed: boolean = true;
+  public searchTerm!: string;
 
   constructor(private route: Router,
               private product: ProductService,
@@ -65,8 +67,8 @@ export class HeaderComponent implements OnInit {
 
   searchProduct(query: KeyboardEvent) {
     if (query) {
-      const element = query.target as HTMLInputElement;
-      this.product.searchProduct(element.value).subscribe((result) => {
+      this.searchTerm = (query.target as HTMLInputElement).value;
+      this.product.searchProduct(this.searchTerm).subscribe((result) => {
 
         if (result.length > 5) {
           result.length = length
