@@ -33,8 +33,8 @@ export class UserAuthComponent implements OnInit {
     // Create the form
     this.signUpForm = this.formBuilder.group({
         name: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
+        user_login: ['', [Validators.required,]],
+        user_password: ['', Validators.required],
         // agreements: ['', Validators.requiredTrue]
       }
     );
