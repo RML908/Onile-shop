@@ -81,11 +81,11 @@
                  placeholder="Email"
                  name="userLogin"
                  ngModel
-                 email
-                 #email="ngModel"
+                 user_login
+                 #user_login="ngModel"
                  required
           >
-          <mat-error *ngIf="email.invalid && email.touched ">
+          <mat-error *ngIf="user_login.invalid && user_login.touched ">
             Please provide a valid email address
           </mat-error>
         </mat-form-field>
