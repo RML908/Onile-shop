@@ -6,8 +6,8 @@ export interface signUp {
   password: string;
 }
 export interface login {
-  email: String;
-  password: String;
+  user_login: String;
+  user_password: String;
 }
 
 export interface product{

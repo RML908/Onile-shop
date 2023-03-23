@@ -21,7 +21,7 @@ invalidUserAuth= new EventEmitter<boolean>(false)
 
   }
   userLogin(data:login){
-    this.http.get<signUp[]>(`http://dst.mobile.am/dsthealth_api/api/login.php?user_login=${data.email}&user_password=${data.password}`,
+    this.http.get<any>(`http://dst.mobile.am/dsthealth_api/api/login.php?user_login=${data.user_login}&user_password=${data.user_password}`,
     {observe:'response'}
     ).subscribe((result)=>{
       if(result && result.body?.length){

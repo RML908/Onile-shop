@@ -5,8 +5,9 @@
       <h2>Sign Up</h2>
       <form #userSignUp="ngForm"
             class="common-form"
-            (ngSubmit)="signUp(userSignUp.value)"
       >
+      <!-- (ngSubmit)="signUp(userSignUp.value)" -->
+
         <mat-form-field>
           <input
             matInput
@@ -78,7 +79,7 @@
           <input matInput
                  class="form-input"
                  placeholder="Email"
-                 name="email"
+                 name="userLogin"
                  ngModel
                  email
                  #email="ngModel"
@@ -93,7 +94,7 @@
                  class="form-input"
                  type="password"
                  placeholder="Password"
-                 name="password"
+                 name="user_password"
                  ngModel
                  password
                  minlength="6"

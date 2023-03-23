@@ -35,15 +35,15 @@ export class UserAuthComponent implements OnInit {
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
-        agreements: ['', Validators.requiredTrue]
+        // agreements: ['', Validators.requiredTrue]
       }
     );
     this.user.userAuthReload();
   }
 
-  signUp(data: signUp) {
-    this.user.userSignUp(data);
-  }
+  // signUp(data: signUp) {
+  //   this.user.userSignUp(data);
+  // }
 
   login(data: login) {
     this.user.userLogin(data)
